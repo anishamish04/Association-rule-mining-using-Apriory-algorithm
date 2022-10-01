@@ -212,21 +212,21 @@ plot(subrules3, method = "paracoord", control=list(reorder=TRUE))
 
 **RESULT:**
 
+Figure 1:
+
 ![Screeenshot1](https://user-images.githubusercontent.com/35908804/193378109-507edf37-845b-4350-9bab-a801331f4afa.jpg)
 
 
-
+Figure 2:
 
 
 ![Screenshot 2](https://user-images.githubusercontent.com/35908804/193378116-365be524-891f-4d19-889a-359665517de9.jpg)
 
 
-
+Figure 3:
 
 
 ![Screenshot 3](https://user-images.githubusercontent.com/35908804/193378121-44defa30-7813-4d64-b2ec-a8c3129db7eb.jpg)
-
-
 
 
 
