@@ -1,5 +1,12 @@
 # Association-rule-mining-using-Apriory-algorithm
-Market-Basket Analysis
+Market-Basket Analysis : Apriori algorithm is used for finding frequent itemsets in a dataset for association rule mining. It is called Apriori because it uses prior knowledge of frequent itemset properties. We apply an iterative approach or level-wise search where k-frequent itemsets are used to find k+1 itemsets. To improve the efficiency of the level-wise generation of frequent itemsets an important property is used called Apriori property which helps by reducing the search space.
+
+Algorithm
+Read each item in the transaction.
+Calculate the support of every item.
+If support is less than minimum support, discard the item. Else, insert it into frequent itemset.
+Calculate confidence for each non- empty subset.
+If confidence is less than minimum confidence, discard the subset. Else, it into strong rules.
 
 A dataset “Online Retail “has been analyzed which consists of the Member number, date of transaction and the Item Description of the retail company.
 
