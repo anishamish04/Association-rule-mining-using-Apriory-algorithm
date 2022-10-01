@@ -34,27 +34,27 @@ library(plyr)
 
 library(data.table) 
 
-**Step 4: Visualizing the structure of the data frame** 
+# Step 4: Visualizing the structure of the data frame 
 
 str(groceries) 
 
-**Step 5 : Sorting Groceries with Member number **
+# Step 5 : Sorting Groceries with Member number 
 
 sorted <- groceries[order(groceries$Member_number),] 
 
-**Step 6: Converting item description to categorical format** 
+# Step 6: Converting item description to categorical format
 
 sorted$Member_number <- as.numeric(sorted$Member_number) 
 
 str(sorted) 
 
-**Step 7: Grouping all the items that were bought together by the same customer on the same date **
+# Step 7: Grouping all the items that were bought together by the same customer on the same date 
 
 itemList <- ddply(sorted, c("Member_number","Date"), function(df1) paste(df1$itemDescription, collapse = ",")) 
 
 head(itemList,15) 
 
-**Step 8: Removing member number and date **
+# Step 8: Removing member number and date 
 
 itemList$Member_number <- NULL 
 
@@ -66,36 +66,36 @@ write.csv(itemList,"ItemList.csv", quote = FALSE, row.names = TRUE)
 
 head(itemList) 
 
-**Step 9: Converting CSV file to Basket Format  **
+# Step 9: Converting CSV file to Basket Format  
 
 trans = read.transactions(file="ItemList.csv", rm.duplicates= TRUE, format="basket",sep=",",cols=1); 
 
 print(trans) 
 
-**Step 10: Removing quotes from Transaction** 
+# Step 10: Removing quotes from Transaction
 
 trans@itemInfo$labels <- gsub("\"","",trans@itemInfo$labels) 
 
 summary(trans) 
 
-**Step 11: Calculating support for frequent items **
+# Step 11: Calculating support for frequent items 
 
 frequentItems <- eclat(trans, parameter = list(supp = 0.05, maxlen = 15))  
 inspect(head(frequentItems,10)) 
 
-**Step 12: plotting frequent items** 
+# Step 12: plotting frequent items
 itemFrequencyPlot(trans, topN=10, type="absolute", main="Item Frequency") 
-**Step 13: Finding Association Rules** 
+# Step 13: Finding Association Rules
 rules <- apriori(trans) 
 rules 
-**Step 14: Creating Data table to analyze the Apriori algorithm with various support level **
+# Step 14: Creating Data table to analyze the Apriori algorithm with various support level 
 
-**Step 15: Support and confidence values** 
+# Step 15: Support and confidence values 
 
 supportLevels <- c(0.05, 0.01, 0.005,0.001) 
 
 confidenceLevels <- c(0.5,0.45,0.4,0.35,0.3,0.25,0.2,0.15,0.1) 
-**Step 16: Empty integers  **
+# Step 16: Empty integers  
 
 rules_sup5 <- integer(length=9) 
 
@@ -168,7 +168,7 @@ ggplot(data=num_rules, aes(x=confidenceLevels)) +
   theme_bw() + 
 
   theme(legend.title=element_blank()) 
-**Step 19 : Rules with specified parameters (support=0.1% and confidence 10% with a minimum length of 2)** 
+# Step 19 : Rules with specified parameters (support=0.1% and confidence 10% with a minimum length of 2)
 rules <- apriori(trans, parameter=list(minlen=2, 
 
                                        supp=0.001,  
@@ -177,10 +177,10 @@ rules <- apriori(trans, parameter=list(minlen=2,
 
 summary(rules) 
 inspect(head(rules,20)) 
-**Step 20: Rules sorted by confidence** 
+# Step 20: Rules sorted by confidence
 rules_conf <- sort (rules, by="confidence", decreasing=TRUE)  
 inspect(head(rules_conf,20)) 
- **Rules sorted by Highest Lift**
+  Rules sorted by Highest Lift
 rules_lift <- sort (rules, by="lift", decreasing=TRUE)  
 inspect(head(rules_lift,20)) 
 subrules <- rules[quality(rules)$confidence > 0.12] 
@@ -189,7 +189,7 @@ subrules
 head(inspect(subrules)) 
 plot(subrules, method = "grouped", control = list(k = 50),engine="grid")  
 #This clearly shows a strong association between {whole milk, yougurt} & {sausage}. 
-**Step 21 :Removing Redundancy** 
+# Step 21 :Removing Redundancy
 redundent <- is.redundant(rules, measure="lift") 
 which(redundent) 
 rules.pruned <- rules[!redundent] 
@@ -202,7 +202,7 @@ subrules2 <- head(rules.pruned, n = 10, by = "lift")
 inspect(subrules2) 
 plot(subrules2, method = "graph", engine="igraph") 
 
-## Step 22: conditional rules 
+# Step 22: conditional rules 
 subrules3 <- rules.pruned[quality(rules.pruned)$confidence > 0.12 & quality(rules.pruned)$lift > 1.2] 
 
 subrules3 <- head(subrules3, n = 10, by = c("lift","confidence")) 
@@ -213,7 +213,7 @@ plot(subrules3, method = "graph",engine="igraph")
 
 plot(subrules3, method = "paracoord", control=list(reorder=TRUE)) 
 
-**RESULT:**
+# RESULT:
 
 Figure 1:
 
@@ -260,7 +260,7 @@ After sorting the rules with the highest confidence and highest lift, we easily 
 Hence there are higher chances of a customer buying sausage if he has purchased whole milk & yogurt. 
 
 
-**CONCLUSION AND RECOMMENDATION**
+# CONCLUSION AND RECOMMENDATION
 
 1.Hence from this above observation, we recommend the retail store manager to place the commodities such as whole milk, yogurt, and sausages on the nearby shelves and   increase their quantity to enhance profits and accelerate sales in the store.  
 
