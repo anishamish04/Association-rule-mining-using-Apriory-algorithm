@@ -202,7 +202,7 @@ subrules2 <- head(rules.pruned, n = 10, by = "lift")
 inspect(subrules2) 
 plot(subrules2, method = "graph", engine="igraph") 
 
-# Step 22: conditional rules 
+# Step 22: Conditional rules 
 subrules3 <- rules.pruned[quality(rules.pruned)$confidence > 0.12 & quality(rules.pruned)$lift > 1.2] 
 
 subrules3 <- head(subrules3, n = 10, by = c("lift","confidence")) 
