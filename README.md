@@ -1,7 +1,11 @@
 # Association-rule-mining-using-Apriory-algorithm
 Market-Basket Analysis
-A dataset “Online Retail “has been analyzed which consists of the Member number, date of transaction and the Item Description of the retail company. 
+
+A dataset “Online Retail “has been analyzed which consists of the Member number, date of transaction and the Item Description of the retail company.
+
 Business Problem: A retail company Instamart is recently facing a huge loss in its sales. The retailers are trying to gain insights into which items are frequently purchased together by customers to increase their sales. 
+
+
 Source:  http://archive.ics.uci.edu/ml/machine-learning-databases/00352/ 
 
  
