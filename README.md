@@ -211,6 +211,26 @@ plot(subrules3, method = "graph",engine="igraph")
 plot(subrules3, method = "paracoord", control=list(reorder=TRUE)) 
 
 **RESULT:**
+
+![Screeenshot1](https://user-images.githubusercontent.com/35908804/193378109-507edf37-845b-4350-9bab-a801331f4afa.jpg)
+
+
+
+
+
+![Screenshot 2](https://user-images.githubusercontent.com/35908804/193378116-365be524-891f-4d19-889a-359665517de9.jpg)
+
+
+
+
+
+![Screenshot 3](https://user-images.githubusercontent.com/35908804/193378121-44defa30-7813-4d64-b2ec-a8c3129db7eb.jpg)
+
+
+
+
+
+
 Fig1: This depicts 10 rules with the highest lift after considering rules with confidence > 0.12 and lift > 1.2 
 
 This also depicts that there are higher chances of a customer buying sausage if the customer has purchased whole milk & yogurt. 
